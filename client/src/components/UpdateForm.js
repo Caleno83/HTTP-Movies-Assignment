@@ -35,6 +35,14 @@ const UpdateForm = ({ getMovieList }) => {
     });
   };
 
+  const starsChangeHandler = (e, index) => {
+    e.persist();
+    let actors = [...update.stars];
+    actors[index] = e.target.value;
+    console.log("This is the actors index", actors[index]);
+    setUpdate({ ...update, stars: [...actors] });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // I did a PUT request to update movies
@@ -75,8 +83,24 @@ const UpdateForm = ({ getMovieList }) => {
           placeholder="Metascore"
           value={update.metascore}
         />
+Im doing some mapping here with the 
+        <div>
+          <h2>Update New Actors</h2>
+          {update.stars.map((actor, index) => {
+            return (
+                <div key={actor.id}>
+              <input
+                type="text"
+                name={actor}
+                value={actor}
+                onChange={(e) => starsChangeHandler(e, index)}
+              />
+              </div>
+            );
+          })}
+        </div>
 
-        <button>Update</button>
+        <button>Update New Info</button>
       </form>
     </div>
   );
