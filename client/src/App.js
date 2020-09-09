@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
 import SavedList from "./Movies/SavedList";
 import MovieList from "./Movies/MovieList";
 import Movie from "./Movies/Movie";
 import UpdateForm from "./components/UpdateForm"
+import AddMovieInfo from "./components/AddMovieInfo";
 import axios from 'axios';
 
 const App = () => {
@@ -29,6 +30,10 @@ const App = () => {
     <>
       <SavedList list={savedList} />
 
+      <div>
+          <NavLink to="/add-movie">Add New Movie Info</NavLink>
+        </div>
+
       <Route exact path="/">
         <MovieList movies={movieList} />
       </Route>
@@ -39,6 +44,10 @@ const App = () => {
 
       <Route path="/movies/:id">
         <Movie addToSavedList={addToSavedList} setMovieList={setMovieList} getMovieList={getMovieList} />
+      </Route>
+
+      <Route exact path="/add-movie">
+        <AddMovieInfo getMovieList={getMovieList} />
       </Route>
     </>
   );
