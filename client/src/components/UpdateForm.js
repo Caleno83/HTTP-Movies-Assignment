@@ -40,8 +40,8 @@ const UpdateForm = ({ getMovieList }) => {
     // I did a PUT request to update movies
     axios
       .put(`http://localhost:5000/api/movies/${id}`, update)
-      .then((resp) => {
-        console.log("Updating response", resp.data);
+      .then((res) => {
+        console.log("Updating response", res.data);
         getMovieList();
         push("/");
       })
